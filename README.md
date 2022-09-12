@@ -4,5 +4,5 @@
 # Tác giả:
 Nguyễn Vũ Hải
 # Thành viên:
-Nguyễn Ngọc Hải\n
+Nguyễn Ngọc Hải \n
 Vũ Quang Huy
