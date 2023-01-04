@@ -3,16 +3,12 @@ from tkinter import *
 import tkinter as tk
 import matplotlib
 import nltk
-import docx
 matplotlib.use('TkAgg')
 from matplotlib.figure import Figure
-from tkinter import filedialog
 from matplotlib.backends.backend_tkagg import (
     FigureCanvasTkAgg,
     NavigationToolbar2Tk
 )
-import os
-from tkinter import messagebox
 import gensim.models.keyedvectors as word2vec
 import gensim
 from module import KmeanTextSummary, ReturnDistortions
@@ -106,7 +102,6 @@ def configureApp():
     # Layout column 0
     GeneralLabel.grid(row=0, column=0, columnspan=3)
     About.grid(row=0, column=2,sticky=E)
-    InputWord.grid(row=0,column=0,sticky=W)
     InputLabel.grid(row=1, column=0)
     InputTextBox.grid(row=2, column=0, rowspan=7)
 
@@ -123,19 +118,7 @@ def configureApp():
     OutputTextBox.grid(row=2, column=2, rowspan=7)
 
 
-def ImportAction():
-    try:
-        File = filedialog.askopenfilename()
-        doc = docx.Document(File)
-        fullText = []
-        for para in doc.paragraphs:
-            fullText.append(para.text)
-        Text = ''.join(fullText)
-        InputTextBox.delete("1.0", END)
-        InputTextBox.insert(END, Text)
-    except Exception as e:
-        messagebox.showerror("Lỗi", "Phát hiện lỗi")
-
+    
 
 
 window = tk.Tk()
@@ -147,7 +130,6 @@ About = tk.Button(window, text="Về chúng tôi", font=("bold", 14),command = l
 InputLabel = tk.Label(text="Input", font = ("bold",16))
 InputTextBox = Text(window, height = 20, width = 40, font = ("bold", 15))
 InputTextBox.bind('<<Modified>>', TrackingSentences)
-InputWord = Button(window, text= "Đọc file text", font=("bold", 14),command = lambda:ImportAction())
 
 ChonCumButton = tk.Button(window, text="Xem cụm tối ưu",font = ("bold", 13), command = lambda:CheckElbow())
 SoCauLabel = tk.Label(window, text="Mời nhập văn bản",font = ("bold",16))
